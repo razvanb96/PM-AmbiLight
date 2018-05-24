@@ -41,7 +41,7 @@ while True:
     #//////////////////////////////////////////////////////////////////////////////////////////////////////////
     image = ImageGrab.grab()  # take a screenshot
     #print image.size
-
+    counter = 0
     for y in range(0, int(round(image.size[1]/10))):  #loop over the height
         for i in range (0 , 38):
             mininterval = i *image.size[0] / 40
@@ -53,17 +53,18 @@ while True:
                 red = red + color[0]
                 green = green + color[1]
                 blue = blue + color[2]
+                counter+=1
                 #print red + " " +  green + " " + blue
                 #print "\n totals   red:%s green:%s blue:%s\n" % (red,green,blue)
                 #print color
                 #print(time.clock())
-            red = (red/ ((image.size[1] / 10) * (image.size[0]/40)))
-            green = (green/ ((image.size[1] / 10) * (image.size[0]/40)))
-            blue = (blue/ ((image.size[1] / 10) * (image.size[0]/40)))
-            j = 3 * i
-            colors[j] = red
-            colors[j+1] = green
-            colors[j+2] = blue
+            red = (int(round(red/ counter)))
+            green = (int(round(green/ counter)))
+            blue = (int(round(blue/ counter)))
+
+            colors.append(red)
+            colors.append(green)
+            colors.append(blue)
 
     print(colors)
 
