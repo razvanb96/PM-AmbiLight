@@ -1,6 +1,6 @@
 /* This line specifies the frequency your AVR is running at.
    This code supports 20 MHz, 16 MHz and 8MHz */
-#define F_CPU 20000000
+#define F_CPU 16000000
 
 // These lines specify what pin the LED strip is on.
 // You will either need to attach the LED strip's data line to PC0 or change these
@@ -38,7 +38,7 @@ typedef struct rgb_color
   1 pulse  = 850 ns
   "period" = 1300 ns
  */
-void __attribute__((noinline)) led_strip_write(rgb_color * colors, unsigned int count) 
+void __attribute__((noinline)) led_strip_write(rgb_color * colors, unsigned int count)
 {
   // Set the pin to be an output driving low.
   LED_STRIP_PORT &= ~(1<<LED_STRIP_PIN);
@@ -123,7 +123,7 @@ void __attribute__((noinline)) led_strip_write(rgb_color * colors, unsigned int 
   _delay_us(80);  // Send the reset signal.
 }
 
-#define LED_COUNT 38
+#define LED_COUNT 41
 rgb_color colors[LED_COUNT];
 
 /*
@@ -210,11 +210,12 @@ int main()
 	char str[6];
 	str[0] = '\n';
     while(1){
-    
+
         USART0_init();
         if(PINB & (1 << PB7)){
             // USART0_print("Intuneriic!\n");
-			for(i = 0; i < LED_COUNT; i++){
+			    USART0_print("ceva\n");
+            for(i = 0; i < LED_COUNT; i++){
 				c1 = USART0_receive();
                 c2 = USART0_receive();
                 c3 = USART0_receive();
@@ -230,7 +231,7 @@ int main()
         else{
             // USART0_print("Luminaa!\n");
             for(i = 0; i < LED_COUNT; i++){
-            
+
 
                 colors[i] = (rgb_color){ 0, 0, 0};
             }
