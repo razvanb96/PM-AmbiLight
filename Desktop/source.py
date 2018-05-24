@@ -12,7 +12,7 @@ import serial
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////
 #HEIGHT         = 1920   #now using image.size[1] dynamically
 #WIDTH          = 1200   #now using image.size[0] dynamically
-LOOP_INTERVAL  = 1   # how often we calculate screen colour (in seconds)
+LOOP_INTERVAL  = 0.5  # how often we calculate screen colour (in seconds)
 DURATION       = 3    # how long it takes bulb to switch colours (in seconds)
 DECIMATE       = 5   # skip every DECIMATE number of pixels to speed up calculation
 #get your unit-unique token from http://developer.lifx.com/ and use it here
@@ -23,7 +23,7 @@ ser = serial.Serial()
 ser.baudrate = 9600
 ser.port = 'COM4'
 ser.parity = 'E'
-# ser.open()
+ser.open()
 # while True:
 # 	ser.write(bytes(b'abc'));
 # 	s = ser.read(10);
@@ -67,7 +67,7 @@ while True:
             colors.append(blue)
 
     print(colors)
-
+    ser.write(colors)
     # red = (( red / ( (image.size[1]/DECIMATE) * (image.size[0]/DECIMATE) ) ) )/255.0
     # green = ((green / ( (image.size[1]/DECIMATE) * (image.size[0]/DECIMATE) ) ) )/255.0
     # blue = ((blue / ( (image.size[1]/DECIMATE) * (image.size[0]/DECIMATE) ) ) )/255.0

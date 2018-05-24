@@ -213,22 +213,22 @@ int main()
     
         USART0_init();
         if(PINB & (1 << PB7)){
-            USART0_print("Intuneriic!\n");
+            // USART0_print("Intuneriic!\n");
 			for(i = 0; i < LED_COUNT; i++){
-				//c1 = USART0_receive();
-                //c2 = USART0_receive();
-                //c3 = USART0_receive();
-				str[0] = c1 + 5;
-				str[1] = c2 +5;
-				str[2] = c3 + 5;
-				str[3] = '\0';
-				USART0_print(str);
+				c1 = USART0_receive();
+                c2 = USART0_receive();
+                c3 = USART0_receive();
+				// str[0] = c1 + 5;
+				// str[1] = c2 +5;
+				// str[2] = c3 + 5;
+				// str[3] = '\0';
+				// USART0_print(str);
 				str[0] = '\0';
-                colors[i] = (rgb_color){ 255, 120, 63};
+                colors[i] = (rgb_color){ c1, c2, c3};
             }
 		}
         else{
-            USART0_print("Luminaa!\n");
+            // USART0_print("Luminaa!\n");
             for(i = 0; i < LED_COUNT; i++){
             
 
